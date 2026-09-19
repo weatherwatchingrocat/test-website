@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>테스트 웹사이트</title>
-</head>
-<body>
-    <h1>안녕하세요!</h1>
-    <p>GitHub Pages로 만든 첫 번째 웹사이트입니다.</p>
-</body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>강호의 도리</title>
+<style>
+:root{
+  --bg:#070b18;--panel:#050a19;--panel2:#111a2b;--text:#f5f7ff;--muted:#8e99ad;
+  --blue:#4e78ff;--purple:#5a45ef;--pink:#ff155b;--orange:#ff9d00;--green:#08bd83;
+  --line:#25334b;--shadow:0 0 22px rgba(77,105,255,.18);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% 0,#111b35 0,#070b18 45%,#030611 100%);
+font-family:Arial,"Noto Sans KR",sans-serif;color:var(--text);min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0}
+.app{width:min(100%,620px);margin:0 auto;background:linear-gradient(180deg,#020715,#05091a);min-height:100vh;padding:16px 14px 40px;box-shadow:0 0 50px #000}
+.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}
+.btn{border-radius:13px;padding:11px 16px;font-weight:800;color:white;background:#17243a;border:1px solid #334766;box-shadow:var(--shadow)}
+.btn.orange{background:linear-gradient(135deg,#ffb000,#e87900);color:#111;border:0}
+.btn.blue{background:linear-gradient(135deg,#4c8bff,#5948ef)}
+.btn.green{background:linear-gradient(135deg,#13c58b,#08a875)}
+.btn.pink{background:linear-gradient(135deg,#f91562,#b50046)}
+.btn.small{padding:8px 11px;border-radius:10px;font-size:13px}
+.banner{border:2px solid #ff0d61;border-radius:12px;background:linear-gradient(90deg,#7c082f,#e71358);padding:10px 12px;font-weight:900;box-shadow:0 0 18px rgba(255,0,90,.35);margin-bottom:20px}
+.brand{text-align:center;margin:10px 0 24px}
+.brand h1{font-size:38px;margin:0 0 6px;background:linear-gradient(90deg,#ff704e,#ff0e86);-webkit-background-clip:text;color:transparent}
+.brand p{margin:0;color:#b8c2d5;font-weight:700}
+.notice{border:2px solid #ffb000;border-radius:18px;padding:14px 16px;background:#071124;box-shadow:0 0 20px rgba(255,174,0,.25);margin-bottom:22px}
+.notice .tag{display:block;background:#ffac00;color:#191000;border-radius:8px;padding:4px 8px;font-weight:900;margin-bottom:7px}
+.notice strong{font-size:19px}.notice div{color:#c9d1df;margin-top:5px}
+.label{display:block;color:#c7d0e1;font-weight:800;margin:12px 3px 7px}
+.search{width:100%;height:54px;border-radius:14px;border:2px solid #ffe100;background:#172338;color:white;text-align:center;font-size:19px;font-weight:800;outline:0;box-shadow:0 0 18px rgba(255,225,0,.28)}
+.search:focus{box-shadow:0 0 25px rgba(255,225,0,.5)}
+.actions{display:grid;grid-template-columns:1fr 125px;gap:8px;margin-top:9px}
+.hint{text-align:center;color:#aab4c6;font-size:13px;margin:8px 0}
+.recent{text-align:center;color:#aab4c6;font-size:13px;margin-bottom:22px}
+.chip{display:inline-block;background:#26334a;padding:4px 10px;border-radius:20px;margin-left:5px;color:#dbe2ee}
+.hr{height:1px;background:#dfe4ef;margin:18px 0 13px}
+.section-title{text-align:center;color:#7f96ff;font-size:16px;text-decoration:underline;text-underline-offset:7px;font-weight:900}
+.center-note{text-align:center;color:#aeb7c7;font-size:13px;line-height:1.8;margin:15px 0}
+.recommend{border:2px solid #e40d50;border-radius:16px;background:linear-gradient(90deg,#2b0716,#650624);padding:12px;margin:10px 0 14px;display:grid;grid-template-columns:66px 1fr;gap:10px;align-items:center}
+.thumb{width:66px;height:66px;border-radius:10px;object-fit:cover;background:#000;border:1px solid #526078}
+.rec-title{background:#e81454;border-radius:7px;padding:5px 8px;font-weight:900;font-size:12px;margin-bottom:6px}
+.rec-number{font-weight:900}.rec-sub{font-size:12px;color:#e2a7bb;margin-top:4px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.tab{background:#1d293a;color:#b8c3d5;border-radius:11px;padding:10px;font-weight:900}.tab.active{background:linear-gradient(135deg,#5146ef,#5642e8);color:white}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.input{width:100%;border-radius:14px;border:1px solid #39506f;background:#0e1726;color:#dce4f2;padding:10px 12px;outline:0}
+.random{width:100%;margin:14px 0;background:linear-gradient(135deg,#11c28a,#07a978);padding:14px;border-radius:12px;color:white;font-weight:900;font-size:17px;box-shadow:0 7px 22px rgba(0,190,130,.18)}
+.card{position:relative;background:#111a2b;border:1px solid #293a55;border-radius:12px;padding:9px;margin:9px 0;display:grid;grid-template-columns:56px 1fr 34px;gap:9px;align-items:center}
 </html>
