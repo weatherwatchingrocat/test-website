@@ -50,4 +50,196 @@ button{cursor:pointer;border:0}
 .input{width:100%;border-radius:14px;border:1px solid #39506f;background:#0e1726;color:#dce4f2;padding:10px 12px;outline:0}
 .random{width:100%;margin:14px 0;background:linear-gradient(135deg,#11c28a,#07a978);padding:14px;border-radius:12px;color:white;font-weight:900;font-size:17px;box-shadow:0 7px 22px rgba(0,190,130,.18)}
 .card{position:relative;background:#111a2b;border:1px solid #293a55;border-radius:12px;padding:9px;margin:9px 0;display:grid;grid-template-columns:56px 1fr 34px;gap:9px;align-items:center}
+.card .thumb{width:56px;height:56px}
+.card-title{font-weight:900}.card-title span{color:#ffcc00}.card-desc{font-size:12px;color:#9ca8bb;margin-top:5px}
+.heart{font-size:22px;background:transparent;color:#fff;filter:drop-shadow(0 0 4px #000)}.heart.saved{color:#ff4f8b}
+.empty{text-align:center;color:#8c98ac;padding:30px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.modal.show{display:flex}.modalbox{width:min(100%,650px);max-height:90vh;overflow:auto;background:#0a1020;border:1px solid #344a6c;border-radius:18px;padding:18px;box-shadow:0 20px 80px #000}
+.modalbox h2{margin:0 0 15px}.close{float:right;background:#202c40;color:white;border-radius:8px;padding:7px 10px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:10px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;color:#aeb9cc;margin:0 0 5px}.field input,.field textarea,.field select{width:100%;background:#111c2e;border:1px solid #354967;border-radius:9px;color:#fff;padding:10px}.field textarea{min-height:90px;resize:vertical}
+.colorrow{display:flex;gap:8px;align-items:center}.colorrow input[type=color]{width:55px;height:40px;padding:2px}
+.admin-list{margin-top:16px}.admin-item{display:flex;justify-content:space-between;gap:8px;padding:10px;border:1px solid #263850;border-radius:10px;margin:7px 0;background:#0d1626}
+.admin-actions{display:flex;gap:6px}.danger{background:#7e1730;color:#fff}.notice-admin{background:#101c30;padding:10px;border-radius:10px;color:#aebbd0;font-size:12px;line-height:1.6;margin-bottom:12px}
+.light{--bg:#eef2f8;--panel:#fff;--panel2:#eef2f8;--text:#172033;--muted:#657084;--line:#cbd5e3}
+body.light{background:#e9edf5}.light .app{background:#fff;box-shadow:0 0 40px rgba(25,40,70,.1)}.light .notice,.light .card{background:#f4f7fb}.light .search,.light .input,.light .field input,.light .field textarea,.light .field select{background:#fff;color:#172033}.light .modalbox{background:#fff}.light .tab{background:#dfe6f0;color:#4d5a70}
+@media(max-width:480px){
+ .app{padding:12px 10px 30px}.brand h1{font-size:31px}.actions{grid-template-columns:1fr 105px}
+ .search{font-size:16px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}
+}
+#membershipGate{position:fixed;inset:0;z-index:50;background:#0d1528;color:#f7f9ff;display:flex;align-items:center;justify-content:center;overflow:auto}.gate{width:min(100%,620px);min-height:100%;padding:110px 24px 60px;text-align:center}.gate h1{font-size:44px;margin:0 0 22px;font-weight:1000;letter-spacing:-2px}.gate-sub{font-size:21px;line-height:1.55;color:#aeb9ce;font-weight:800;margin-bottom:45px}.gate-code{width:100%;height:105px;background:#1a2639;border:3px solid #ffbd18;border-radius:32px;box-shadow:0 0 28px rgba(255,183,0,.25);color:white;text-align:center;font-size:24px;font-weight:900;outline:none}.gate-code::placeholder{color:#737b8a}.gate-enter{width:100%;height:100px;margin-top:40px;border-radius:55px;background:linear-gradient(135deg,#ffae0b,#f28b00);color:white;font-size:30px;font-weight:1000}.gate-box{border:2px solid #75551c;background:#172136;border-radius:30px;padding:28px 24px;margin-top:42px}.gate-box.blue{border-color:#2d5c9f;background:#182b49}.gate-box p{font-size:19px;line-height:1.65;color:#c2cbda;font-weight:800;margin:0 0 22px}.gate-white,.gate-ad{width:100%;height:84px;border-radius:50px;font-size:22px;font-weight:1000}.gate-white{background:#fff;color:#182033}.gate-ad{background:linear-gradient(135deg,#4b83ff,#2868ef);color:#fff}.gate-footer{margin-top:38px;color:#78869e;font-size:16px;font-weight:800}@media(max-width:480px){.gate{padding:105px 18px 45px}.gate h1{font-size:38px}.gate-sub{font-size:19px}.gate-code{height:103px}.gate-enter{height:96px;font-size:28px}.gate-box{padding:26px 18px}.gate-box p{font-size:17px}.gate-white,.gate-ad{height:80px;font-size:20px}}</style>
+</head>
+<body>
+<div id="membershipGate"><div class="gate"><h1>👑 멤버십 전용</h1><div class="gate-sub">비밀코드는 멤버십 가입 후 제공됩니다.<br>이미 코드를 받으셨다면 아래에 입력해 주세요.</div><input id="memberCode" class="gate-code" placeholder="멤버십 비밀코드" autocomplete="off"><button class="gate-enter" id="memberEnter">입장하기</button><div class="gate-box"><p>아직 비밀코드가 없다면<br>멤버십 가입 후 안내받을 수 있습니다.</p><button class="gate-white" id="joinMembership">멤버십 가입하러 가기</button></div><div class="gate-box blue"><p>멤버십 없이 체험판으로 미리 볼 수 있습니다.<br>광고 페이지로 1회 이동하면 오늘 하루 화면을 볼 수 있고,<br>실제 이용은 멤버십 가입 후 가능합니다.</p><button class="gate-ad" id="watchAd">광고 보고 체험하기</button></div><div class="gate-footer">오늘 한 번 입장하면 자정까지 다시 묻지 않습니다.</div></div></div><div class="app">
+  <div class="top">
+    <button class="btn orange" id="installBtn">📲 웹 설치하기</button>
+    <button class="btn" id="themeBtn">☀️ 라이트모드</button>
+  </div>
+  <div class="banner">🌟 오늘의 추천 명작 (매일 밤 8시 업데이트)</div>
+  <header class="brand">
+    <h1>🧸 강호의 도리</h1>
+    <p>신속하고 편리하게 작품을 즐기세요!</p>
+  </header>
+
+  <section class="notice" id="noticeBox">
+    <span class="tag">NEW</span><strong>🎁 운영자 공지</strong>
+    <div>사이트 이용 관련 중요한 안내사항입니다.</div>
+  </section>
+
+  <label class="label">🎯 강호의 도리 검색기 (번호 전용)</label>
+  <input id="numberSearch" class="search" inputmode="numeric" placeholder="이곳에 강호의 도리를 입력해주세요">
+  <div class="actions">
+    <button class="btn blue" id="goBtn">😎 감상하러 가기 😎</button>
+    <button class="btn orange" id="saveSearchBtn">⭐ 저장</button>
+  </div>
+  <div class="hint">번호를 알고있는 작품들은 이곳에 검색해 감상하세요</div>
+  <div class="recent">최근 검색: <span id="recentBox"></span></div>
+
+  <div class="hr"></div>
+  <div class="section-title">추천 작품 감상하기</div>
+  <div class="center-note">항상 추천 작품들은 이곳에서 감상하세요!<br>※ 영상의 번호를 검색하면 빠르게 찾을 수 있습니다.👇👇👇</div>
+
+  <div id="featured"></div>
+
+  <div class="tabs">
+    <button class="tab active" id="allTab">🌟 전체 작품</button>
+    <button class="tab" id="favTab">💖 내 보관함</button>
+  </div>
+  <div class="filters">
+    <input class="input" id="authorFilter" placeholder="작가검색(예: danimaru)">
+    <input class="input" id="titleFilter" placeholder="작품검색(예: 001, 여자친)">
+  </div>
+  <button class="random" id="randomBtn">🎲 추천 작품 랜덤으로 감상하기 🎲</button>
+  <div id="list"></div>
+</div>
+
+<div class="modal" id="adminModal">
+ <div class="modalbox">
+  <button class="close" onclick="closeAdmin()">✕</button>
+  <h2>⚙️ 관리자 패널</h2>
+  <div class="notice-admin">
+    이 버전은 GitHub Pages 같은 정적 호스팅에서 바로 사용할 수 있도록 만들었습니다.
+    작품/설정은 현재 사용 중인 브라우저의 저장공간에 저장됩니다.
+    <b>실제 모든 방문자에게 같은 데이터를 배포하려면 Firebase/Supabase 같은 서버 DB 연결이 필요합니다.</b>
+  </div>
+  <div class="formgrid">
+    <div class="field"><label>작품 번호</label><input id="fNumber" type="number" placeholder="예: 100"></div>
+    <div class="field"><label>제목</label><input id="fTitle" placeholder="제목만 입력"></div>
+    <div class="field"><label>사이트 링크</label><input id="fLink" placeholder="https://..."></div>
+    <div class="field"><label>PC/기본 이미지</label><input id="fImage" placeholder="이미지 URL"></div>
+    <div class="field full"><label>모바일 이미지 (모바일에서 이 이미지를 사용)</label><input id="fMobileImage" placeholder="모바일용 이미지 URL"></div>
+    <div class="field full"><label>부가 설명</label><textarea id="fDesc" placeholder="원하는 설명을 입력하세요"></textarea></div>
+    <div class="field"><label>설명/카드 색상</label><div class="colorrow"><input id="fColor" type="color" value="#e81454"><span id="colorValue">#e81454</span></div></div>
+    <div class="field"><label>추천 작품으로 표시</label><select id="fFeatured"><option value="no">아니오</option><option value="yes">예</option></select></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <button class="btn green" style="flex:1" onclick="addWork()">➕ 작품 추가</button>
+    <button class="btn" onclick="clearForm()">초기화</button>
+  </div>
+
+  <h3 style="margin-top:24px">📢 공지 수정</h3>
+  <div class="field"><label>공지 제목</label><input id="noticeTitle"></div>
+  <div class="field"><label>공지 내용</label><textarea id="noticeText"></textarea></div>
+  <button class="btn blue" onclick="saveNotice()">공지 저장</button>
+
+  <h3 style="margin-top:24px">👑 멤버십 입장 화면</h3><div class="notice-admin">멤버십 화면의 코드와 링크를 관리자 패널에서 변경할 수 있습니다.</div><div class="field"><label>멤버십 비밀코드</label><input id="memberAdminCode"></div><div class="field"><label>멤버십 가입 링크</label><input id="memberJoinLink" placeholder="https://..."></div><div class="field"><label>광고 체험 링크</label><input id="memberAdLink" placeholder="https://..."></div><div class="field"><label>멤버십 잠금 화면</label><select id="memberEnabled"><option value="yes">사용</option><option value="no">사용 안 함</option></select></div><button class="btn orange" onclick="saveMemberSettings()">👑 멤버십 설정 저장</button><h3 style="margin-top:24px">📋 등록된 작품</h3>
+  <div id="adminList" class="admin-list"></div>
+ </div>
+</div>
+
+<script>
+const DEFAULT_WORKS=[
+ {id:150,number:150,title:"오늘의 추천 명작",author:"강호의 고수가 추천하는 오늘의 명작",image:"",mobileImage:"",link:"#",desc:"강호의 고수가 추천하는 오늘의 명작 👍",color:"#e81454",featured:true},
+ {id:163,number:163,title:"Wakamatsu",author:"Wakamatsu",image:"",mobileImage:"",link:"#",desc:"추천 작품",color:"#253b64",featured:false}
+];
+
+let works=JSON.parse(localStorage.getItem("ghWorks")||"null")||DEFAULT_WORKS;
+let favorites=JSON.parse(localStorage.getItem("ghFavorites")||"[]");
+let recent=JSON.parse(localStorage.getItem("ghRecent")||"[]");
+let notice=JSON.parse(localStorage.getItem("ghNotice")||'{"title":"🎁 운영자 공지","text":"사이트 이용 관련 중요한 안내사항입니다."}');
+let favOnly=false;
+
+function saveAll(){localStorage.setItem("ghWorks",JSON.stringify(works));localStorage.setItem("ghFavorites",JSON.stringify(favorites));localStorage.setItem("ghRecent",JSON.stringify(recent));}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function imgSrc(w){
+ const desktop=w.image||"";
+ const mobile=w.mobileImage||desktop;
+ return mobile ? `<picture>${mobile?`<source media="(max-width: 480px)" srcset="${esc(mobile)}">`:""}<img class="thumb" src="${esc(desktop||mobile)}" onerror="this.style.background='#000';this.removeAttribute('src')"></picture>` : `<div class="thumb"></div>`;
+}
+function openWork(w){
+ if(!w)return;
+ recent=[w.number,...recent.filter(n=>n!==w.number)].slice(0,8);saveAll();renderRecent();
+ if(w.link&&w.link!=="#") window.open(w.link,"_blank","noopener");
+ else alert("이 작품에는 아직 사이트 링크가 등록되지 않았습니다.");
+}
+function findNumber(){
+ const n=Number(document.getElementById("numberSearch").value.trim());
+ if(!n)return null;
+ return works.find(w=>Number(w.number)===n);
+}
+document.getElementById("goBtn").onclick=()=>{const w=findNumber(); if(w)openWork(w);else alert("해당 번호의 작품을 찾을 수 없습니다.");};
+document.getElementById("numberSearch").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("goBtn").click()});
+document.getElementById("saveSearchBtn").onclick=()=>{const w=findNumber();if(w){toggleFav(w.id);alert("내 보관함에 저장했습니다.");}else alert("번호를 먼저 입력해주세요.")};
+
+function toggleFav(id){favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];saveAll();render();}
+function renderRecent(){document.getElementById("recentBox").innerHTML=recent.slice(0,4).map(n=>`<span class="chip">${n}</span>`).join("")||"<span class='chip'>없음</span>"}
+function renderFeatured(){
+ const w=works.find(x=>x.featured)||works[0]; if(!w){document.getElementById("featured").innerHTML="";return}
+ document.getElementById("featured").innerHTML=`<div class="recommend" style="border-color:${esc(w.color||"#e81454")}">
+   ${imgSrc(w)}<div><div class="rec-title" style="background:${esc(w.color||"#e81454")}">🌟 오늘의 추천 명작 (매일 밤 8시 업데이트)</div>
+   <div class="rec-number">${w.number}. ${esc(w.title)}</div><div class="rec-sub">${esc(w.desc||w.author||"")}</div></div></div>`;
+}
+function render(){
+ renderRecent();renderFeatured();
+ const author=document.getElementById("authorFilter").value.toLowerCase(),title=document.getElementById("titleFilter").value.toLowerCase();
+ let arr=works.filter(w=>(!favOnly||favorites.includes(w.id))&&(!author||String(w.author).toLowerCase().includes(author))&&(!title||(`${w.number} ${w.title}`).toLowerCase().includes(title)));
+ document.getElementById("list").innerHTML=arr.length?arr.map(w=>`<div class="card" style="border-left:3px solid ${esc(w.color||"#293a55")}">
+ ${imgSrc(w)}<div><div class="card-title"><span>${w.number}.</span> ${esc(w.title)}</div><div class="card-desc">${esc(w.desc||w.author||"")}</div></div>
+ <button class="heart ${favorites.includes(w.id)?"saved":""}" title="보관함" onclick="toggleFav(${w.id})">${favorites.includes(w.id)?"♥":"♡"}</button></div>`).join(""):`<div class="empty">표시할 작품이 없습니다.</div>`;
+}
+document.getElementById("allTab").onclick=()=>{favOnly=false;document.getElementById("allTab").classList.add("active");document.getElementById("favTab").classList.remove("active");render()};
+document.getElementById("favTab").onclick=()=>{favOnly=true;document.getElementById("favTab").classList.add("active");document.getElementById("allTab").classList.remove("active");render()};
+["authorFilter","titleFilter"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+document.getElementById("randomBtn").onclick=()=>{const arr=favOnly?works.filter(w=>favorites.includes(w.id)):works;if(arr.length)openWork(arr[Math.floor(Math.random()*arr.length)])};
+
+document.getElementById("themeBtn").onclick=()=>{
+ document.body.classList.toggle("light");localStorage.setItem("ghTheme",document.body.classList.contains("light")?"light":"dark");
+ document.getElementById("themeBtn").textContent=document.body.classList.contains("light")?"🌙 다크모드":"☀️ 라이트모드";
+};
+if(localStorage.getItem("ghTheme")==="light"){document.body.classList.add("light");document.getElementById("themeBtn").textContent="🌙 다크모드"}
+
+document.getElementById("installBtn").onclick=()=>openAdmin();
+
+function openAdmin(){
+ const p=prompt("관리자 비밀번호를 입력하세요.","1234");
+ if(p==="1234"){document.getElementById("adminModal").classList.add("show");loadAdmin();}else if(p!==null)alert("비밀번호가 올바르지 않습니다.");
+}
+function closeAdmin(){document.getElementById("adminModal").classList.remove("show")}
+function clearForm(){["fNumber","fTitle","fLink","fImage","fMobileImage","fDesc"].forEach(id=>document.getElementById(id).value="");document.getElementById("fColor").value="#e81454";document.getElementById("fFeatured").value="no"}
+function addWork(){
+ const number=Number(document.getElementById("fNumber").value),title=document.getElementById("fTitle").value.trim();
+ if(!number||!title){alert("번호와 제목은 필수입니다.");return}
+ const w={id:Date.now(),number,title,author:title,image:document.getElementById("fImage").value.trim(),mobileImage:document.getElementById("fMobileImage").value.trim(),link:document.getElementById("fLink").value.trim()||"#",desc:document.getElementById("fDesc").value.trim(),color:document.getElementById("fColor").value,featured:document.getElementById("fFeatured").value==="yes"};
+ if(w.featured)works.forEach(x=>x.featured=false);
+ works.push(w);saveAll();clearForm();loadAdmin();render();
+}
+function editWork(id){
+ const w=works.find(x=>x.id===id);if(!w)return;
+ document.getElementById("fNumber").value=w.number;document.getElementById("fTitle").value=w.title;document.getElementById("fLink").value=w.link;document.getElementById("fImage").value=w.image;document.getElementById("fMobileImage").value=w.mobileImage;document.getElementById("fDesc").value=w.desc;document.getElementById("fColor").value=w.color||"#e81454";document.getElementById("fFeatured").value=w.featured?"yes":"no";
+ works=works.filter(x=>x.id!==id);saveAll();loadAdmin();render();
+ window.scrollTo(0,0);
+}
+function deleteWork(id){if(confirm("이 작품을 삭제할까요?")){works=works.filter(w=>w.id!==id);favorites=favorites.filter(x=>x!==id);saveAll();loadAdmin();render()}}
+function loadAdmin(){
+ document.getElementById("noticeTitle").value=notice.title;document.getElementById("noticeText").value=notice.text;document.getElementById("memberAdminCode").value=memberSettings.code;document.getElementById("memberJoinLink").value=memberSettings.joinLink;document.getElementById("memberAdLink").value=memberSettings.adLink;document.getElementById("memberEnabled").value=memberSettings.enabled?"yes":"no";
+ document.getElementById("adminList").innerHTML=works.map(w=>`<div class="admin-item"><div><b>${w.number}. ${esc(w.title)}</b><div style="font-size:11px;color:#8997aa">${esc(w.link)}</div></div><div class="admin-actions"><button class="btn small" onclick="editWork(${w.id})">수정</button><button class="btn small danger" onclick="deleteWork(${w.id})">삭제</button></div></div>`).join("");
+}
+function saveNotice(){notice={title:document.getElementById("noticeTitle").value,text:document.getElementById("noticeText").value};localStorage.setItem("ghNotice",JSON.stringify(notice));document.querySelector("#noticeBox strong").textContent=notice.title;document.querySelector("#noticeBox div").textContent=notice.text;alert("공지 저장 완료");}
+document.getElementById("noticeBox").querySelector("strong").textContent=notice.title;
+document.getElementById("noticeBox").querySelector("div").textContent=notice.text;
+document.getElementById("fColor").addEventListener("input",e=>document.getElementById("colorValue").textContent=e.target.value);
+const DEFAULT_MEMBER_SETTINGS={code:"1234",joinLink:"#",adLink:"#",enabled:true};let memberSettings=JSON.parse(localStorage.getItem("ghMemberSettings")||"null")||DEFAULT_MEMBER_SETTINGS;function memberUnlocked(){const d=localStorage.getItem("ghMemberUntil");return d&&Number(d)>Date.now()}function updateMembershipGate(){document.getElementById("membershipGate").style.display=(!memberSettings.enabled||memberUnlocked())?"none":"flex"}function unlockUntilMidnight(){const end=new Date();end.setHours(24,0,0,0);localStorage.setItem("ghMemberUntil",String(end.getTime()));updateMembershipGate()}document.getElementById("memberEnter").onclick=()=>{if(document.getElementById("memberCode").value.trim()===String(memberSettings.code))unlockUntilMidnight();else alert("멤버십 비밀코드가 올바르지 않습니다.")};document.getElementById("memberCode").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("memberEnter").click()});document.getElementById("joinMembership").onclick=()=>{if(memberSettings.joinLink!=="#")window.open(memberSettings.joinLink,"_blank","noopener");else alert("관리자 패널에서 멤버십 가입 링크를 등록해주세요.")};document.getElementById("watchAd").onclick=()=>{if(memberSettings.adLink!=="#")window.open(memberSettings.adLink,"_blank","noopener");unlockUntilMidnight()};function saveMemberSettings(){memberSettings={code:document.getElementById("memberAdminCode").value.trim()||"1234",joinLink:document.getElementById("memberJoinLink").value.trim()||"#",adLink:document.getElementById("memberAdLink").value.trim()||"#",enabled:document.getElementById("memberEnabled").value==="yes"};localStorage.setItem("ghMemberSettings",JSON.stringify(memberSettings));updateMembershipGate();alert("멤버십 설정을 저장했습니다")}
+render();
+</script>
+</body>
 </html>
